@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earl Lawrence L. Llego - Student Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .profile-body {
+            padding: 30px 25px;
+        }
+
+        .info-group {
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .info-group:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667eea;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .about-text {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            font-style: italic;
+            white-space: pre-line; /* This preserves the line breaks for the poem */
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .social-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 480px) {
+            .profile-card {
+                border-radius: 12px;
+            }
+
+            .profile-name {
+                font-size: 22px;
+            }
+
+            .profile-body {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img class="profile-img"
+                     src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/607425076_2671916533161267_9150097217470862320_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFapQlktccuad3RoSfKdF2CCkZuxvIvUCIKRm7G8i9QIm-X4c9wYa38ycEZH3zUPM9qYus3cmd22Gq0gv8W-clJ&_nc_ohc=3uEC_o3Wic4Q7kNvwHnsccg&_nc_oc=AdmiHrTbkgrWLPCWgIlvo-P3CnEa6BYkxwFxQc0AGwFoFUuWXys-Iwl2G-LnN83C77ZFKIIQBSd3e1tYxtzesWFa&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=pYojTmYgl6Bd7AY-65BoCg&oh=00_Afohz7jqLgZaGkoaE4DFfaz4OFnRw-Xs2tkhUqlAI2VkKw&oe=696B64AE"
+                     alt="Earl Lawrence L. Llego">
+                <div class="profile-name">Earl Lawrence L. Llego</div>
+                <div class="profile-role">Student Developer</div>
+            </div>
+
+            <div class="profile-body">
+                <div class="info-group">
+                    <div class="info-label">Course</div>
+                    <div class="info-value">BS Information Technology</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">School</div>
+                    <div class="info-value">ACLC College of Mandaue</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">Email</div>
+                    <div class="info-value">earllawrencellego@email.com</div>
+                </div>
+
+                <div class="info-group">
+                    <div class="info-label">About</div>
+                    <div class="about-text">In the halls of ACLC, my journey began,
+                    Merging the logic and the mind of a man.
+                    Through lines of code and the networking maze,
+                    I build out my future in a digital haze.
+
+                    From Mandaue's heart to the world on a screen,
+                    I am the bridge to the spaces between.</div>
+                </div>
+
+                <div class="social-links">
+                    <button class="social-btn" title="Facebook">f</button>
+                    <button class="social-btn" title="Email">✉</button>
+                    <button class="social-btn" title="GitHub">⚙</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
