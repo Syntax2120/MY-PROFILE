@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earl Lawrence L. Llego - Student Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,191 +13,320 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+        }
+
+        /* Ambient Background Animations */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
         }
 
         .container {
-            max-width: 400px;
+            max-width: 900px;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            display: grid;
+            /* Default: Mobile (1 column) */
+            grid-template-columns: 1fr; 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Responsive Breakpoint for Tablets/Desktops */
+        @media (min-width: 850px) {
+            .profile-card {
+                grid-template-columns: 340px 1fr;
+            }
         }
 
         .profile-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 30px 100px rgba(6, 182, 212, 0.2);
+            border-color: rgba(6, 182, 212, 0.3);
         }
 
-        .profile-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 30px 20px 20px;
-            text-align: center;
+        .profile-left {
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f1419 100%);
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        @media (min-width: 850px) {
+            .profile-left {
+                border-bottom: none;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .profile-img-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-radius: 50%;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 5px solid white;
             object-fit: cover;
-            margin: 0 auto 15px;
-            display: block;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 4px solid #0a0a0a;
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 18px;
+            height: 18px;
+            background: #10b981;
+            border-radius: 50%;
+            border: 3px solid #0a0a0a;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.8; }
         }
 
         .profile-name {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            color: white;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            margin-bottom: 8px;
+            text-align: center;
         }
 
         .profile-role {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 500;
-        }
-
-        .profile-body {
-            padding: 30px 25px;
-        }
-
-        .info-group {
-            margin-bottom: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .info-group:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .info-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #667eea;
+            font-size: 13px;
+            color: #06b6d4;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
-        .info-value {
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-        }
+        .quick-info { width: 100%; margin-bottom: 25px; }
 
-        .about-text {
-            font-size: 14px;
-            color: #555;
-            line-height: 1.6;
-            font-style: italic;
-            white-space: pre-line; /* This preserves the line breaks for the poem */
-        }
-
-        .social-links {
+        .quick-item {
             display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #f0f0f0;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: 0.3s;
         }
+
+        .quick-item:hover {
+            background: rgba(6, 182, 212, 0.1);
+            transform: translateX(5px);
+        }
+
+        .quick-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .quick-label { font-size: 9px; color: #6b7280; text-transform: uppercase; }
+        .quick-value { font-size: 13px; color: #e5e7eb; }
+
+        .social-links { display: flex; gap: 12px; }
 
         .social-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #f0f0f0;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.3s ease;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            color: inherit;
+            color: #9ca3af;
+            transition: 0.3s;
         }
 
         .social-btn:hover {
-            background: #667eea;
+            background: #06b6d4;
             color: white;
-            transform: scale(1.1);
+            transform: translateY(-3px);
         }
 
-        @media (max-width: 480px) {
-            .profile-card {
-                border-radius: 12px;
-            }
-
-            .profile-name {
-                font-size: 22px;
-            }
-
-            .profile-body {
-                padding: 25px 20px;
-            }
+        .profile-right {
+            padding: 35px 25px;
         }
+
+        @media (min-width: 850px) {
+            .profile-right { padding: 50px 45px; }
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #06b6d4;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(6, 182, 212, 0.3), transparent);
+        }
+
+        .about-text {
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            white-space: pre-line;
+            font-style: italic;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid #06b6d4;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        /* Stacks stats on small phones */
+        @media (max-width: 400px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-icon { font-size: 20px; color: #06b6d4; margin-bottom: 8px; }
+        .stat-value { font-size: 18px; font-weight: 700; color: #fff; }
+        .stat-label { font-size: 10px; color: #6b7280; text-transform: uppercase; }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="profile-card">
-            <div class="profile-header">
-                <img class="profile-img"
-                     src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/607425076_2671916533161267_9150097217470862320_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFapQlktccuad3RoSfKdF2CCkZuxvIvUCIKRm7G8i9QIm-X4c9wYa38ycEZH3zUPM9qYus3cmd22Gq0gv8W-clJ&_nc_ohc=3uEC_o3Wic4Q7kNvwHnsccg&_nc_oc=AdmiHrTbkgrWLPCWgIlvo-P3CnEa6BYkxwFxQc0AGwFoFUuWXys-Iwl2G-LnN83C77ZFKIIQBSd3e1tYxtzesWFa&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=pYojTmYgl6Bd7AY-65BoCg&oh=00_Afohz7jqLgZaGkoaE4DFfaz4OFnRw-Xs2tkhUqlAI2VkKw&oe=696B64AE"
-                     alt="Earl Lawrence L. Llego">
-                <div class="profile-name">Earl Lawrence L. Llego</div>
-                <div class="profile-role">Student Developer</div>
-            </div>
-
-            <div class="profile-body">
-                <div class="info-group">
-                    <div class="info-label">Course</div>
-                    <div class="info-value">BS Information Technology</div>
+            <div class="profile-left">
+                <div class="profile-img-wrapper">
+                    <img class="profile-img" src="https://scontent.fmnl13-4.fna.fbcdn.net/v/t39.30808-6/607425076_2671916533161267_9150097217470862320_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFapQlktccuad3RoSfKdF2CCkZuxvIvUCIKRm7G8i9QIm-X4c9wYa38ycEZH3zUPM9qYus3cmd22Gq0gv8W-clJ&_nc_ohc=3uEC_o3Wic4Q7kNvwHnsccg&_nc_oc=AdmiHrTbkgrWLPCWgIlvo-P3CnEa6BYkxwFxQc0AGwFoFUuWXys-Iwl2G-LnN83C77ZFKIIQBSd3e1tYxtzesWFa&_nc_zt=23&_nc_ht=scontent.fmnl13-4.fna&_nc_gid=pYojTmYgl6Bd7AY-65BoCg&oh=00_Afohz7jqLgZaGkoaE4DFfaz4OFnRw-Xs2tkhUqlAI2VkKw&oe=696B64AE" alt="Earl Lawrence L. Llego">
+                    <div class="status-badge"></div>
                 </div>
+                
+                <h1 class="profile-name">Earl Lawrence L. Llego</h1>
+                <p class="profile-role">Student Developer</p>
 
-                <div class="info-group">
-                    <div class="info-label">School</div>
-                    <div class="info-value">ACLC College of Mandaue</div>
-                </div>
-
-                <div class="info-group">
-                    <div class="info-label">Email</div>
-                    <div class="info-value">earllawrencellego@email.com</div>
-                </div>
-
-                <div class="info-group">
-                    <div class="info-label">About</div>
-                    <div class="about-text">In the halls of ACLC, my journey began,
-                    Merging the logic and the mind of a man.
-                    Through lines of code and the networking maze,
-                    I build out my future in a digital haze.
-
-                    From Mandaue's heart to the world on a screen,
-                    I am the bridge to the spaces between.</div>
+                <div class="quick-info">
+                    <div class="quick-item">
+                        <div class="quick-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="quick-text">
+                            <p class="quick-label">Course</p>
+                            <p class="quick-value">BS IT</p>
+                        </div>
+                    </div>
+                    <div class="quick-item">
+                        <div class="quick-icon"><i class="fas fa-school"></i></div>
+                        <div class="quick-text">
+                            <p class="quick-label">School</p>
+                            <p class="quick-value">ACLC Mandaue</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="social-links">
-                    <button class="social-btn" title="Facebook">f</button>
-                    <button class="social-btn" title="Email">✉</button>
-                    <button class="social-btn" title="GitHub">⚙</button>
+                    <a href="https://www.facebook.com/renzllego73/" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/lowrains73/?next=%2F" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@lowrainsssss" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="profile-right">
+                <div class="section-title">About Me</div>
+                <div class="about-text">In the halls of ACLC, my journey began,
+                Merging the logic and the mind of a man.
+                Through lines of code and the networking maze,
+                I build out my future in a digital haze.</div>
+
+                <div class="section-title">Highlights</div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-code stat-icon"></i>
+                        <p class="stat-value">IT</p>
+                        <p class="stat-label">Major</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-laptop-code stat-icon"></i>
+                        <p class="stat-value">Dev</p>
+                        <p class="stat-label">Focus</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-rocket stat-icon"></i>
+                        <p class="stat-value">2026</p>
+                        <p class="stat-label">Active</p>
+                    </div>
                 </div>
             </div>
         </div>
